@@ -8,12 +8,12 @@ namespace EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade
         protected Medico()
         {
             Especialidades = new List<Especialidade>();
-            ConveniosCredenciados = new List<Convenio._1.Entidade.Convenio>();
+            ConveniosCredenciados = new List<ConvenioCredenciado>();
         }
 
         public Medico(string nome, string sobrenome, string rg, string cpf):base(_2.Enum.ETipoFuncionario.Medico, nome,sobrenome,rg,cpf)
         {
-            ConveniosCredenciados = new List<Convenio._1.Entidade.Convenio>();
+            ConveniosCredenciados = new List<ConvenioCredenciado>();
             Especialidades = new List<Especialidade>();
         }
 
@@ -22,7 +22,8 @@ namespace EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade
             Especialidades.ToList().AddRange(especialidades ?? new Especialidade[0]);
         }
 
+        public int IdMedico { get; set; }
         public IEnumerable<Especialidade> Especialidades { get; }
-        public IEnumerable<Convenio._1.Entidade.Convenio> ConveniosCredenciados { get; set; }
+        public IEnumerable<ConvenioCredenciado> ConveniosCredenciados { get; set; }
     }
 }

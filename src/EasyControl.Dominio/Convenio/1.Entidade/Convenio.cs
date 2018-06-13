@@ -9,19 +9,19 @@ namespace EasyControl.Dominio.Convenio._1.Entidade
         protected Convenio()
         {
             Pacientes = new List<Paciente>();
-            MedicosCredenciados = new List<Medico>();
+            MedicosCredenciados = new List<ConvenioCredenciado>();
         }
 
         public Convenio(string nome)
         {
             Pacientes = new List<Paciente>();
-            MedicosCredenciados = new List<Medico>();
+            MedicosCredenciados = new List<ConvenioCredenciado>();
             Nome = nome;
         }
 
         public int IdConvenio { get; set; }
         public string Nome { get; set; }
         public IEnumerable<Paciente> Pacientes { get; set; }
-        public IEnumerable<Medico> MedicosCredenciados { get; set; }
+        public IEnumerable<ConvenioCredenciado> MedicosCredenciados { get; set; }
     }
 }

@@ -17,6 +17,8 @@ namespace EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade
 
         public int IdEspecialidade { get; set; }
         public string Nome { get; set; }
+        public int IdMedico { get; set; }
+        public Medico Medico { get; set; }
         public IEnumerable<Procedimento> Procedimentos { get; set; }
     }
 }

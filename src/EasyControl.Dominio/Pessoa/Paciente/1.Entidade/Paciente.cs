@@ -12,6 +12,7 @@
 
         }
 
+        public int IdPaciente { get; set; }
         public Convenio._1.Entidade.Convenio Convenio { get; set; }
     }
 }
