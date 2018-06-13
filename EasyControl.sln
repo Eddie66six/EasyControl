@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{98D18E3B-0A87-4A9A-B00D-9E0A51852B33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyControl.Dominio", "src\EasyControl.Dominio\EasyControl.Dominio.csproj", "{97DF9B2C-5CB8-416B-B2C1-0FE875AE83EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97DF9B2C-5CB8-416B-B2C1-0FE875AE83EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97DF9B2C-5CB8-416B-B2C1-0FE875AE83EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97DF9B2C-5CB8-416B-B2C1-0FE875AE83EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97DF9B2C-5CB8-416B-B2C1-0FE875AE83EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{97DF9B2C-5CB8-416B-B2C1-0FE875AE83EF} = {98D18E3B-0A87-4A9A-B00D-9E0A51852B33}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62E9F058-9DBD-4DD9-914D-0BE3C0D7CFC2}
+	EndGlobalSection
+EndGlobal
