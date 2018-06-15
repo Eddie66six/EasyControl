@@ -4,14 +4,16 @@ using EasyControl.Repositorio;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EasyControl.Repositorio.Migrations
 {
-    [DbContext(typeof(ConfiguracaoContexto))]
-    partial class ConfiguracaoContextoModelSnapshot : ModelSnapshot
+    [DbContext(typeof(Contexto))]
+    [Migration("20180615020749_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +48,7 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.HasKey("IdPermissao");
 
-                    b.ToTable("Permissao");
+                    b.ToTable("Permissoes");
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Colaborador._1.Entidade.Colaborador", b =>
@@ -62,11 +64,15 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.Property<string>("Rg");
 
+                    b.Property<string>("Senha");
+
                     b.Property<string>("Sobrenome");
+
+                    b.Property<string>("Usuario");
 
                     b.HasKey("IdColaborador");
 
-                    b.ToTable("Colaborador");
+                    b.ToTable("Colaboradores");
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Colaborador._1.Entidade.ColaboradorPermissao", b =>
@@ -79,7 +85,7 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.HasIndex("IdPermissao");
 
-                    b.ToTable("ColaboradorPermissao");
+                    b.ToTable("ColaboradorPermissoes");
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade.ConvenioCredenciado", b =>
@@ -94,7 +100,7 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.HasIndex("ConvenioIdConvenio");
 
-                    b.ToTable("ConvenioCredenciado");
+                    b.ToTable("ConveniosCredenciados");
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade.Especialidade", b =>
@@ -112,7 +118,7 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.HasIndex("IdMedico");
 
-                    b.ToTable("Especialidade");
+                    b.ToTable("Especialidades");
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade.Medico", b =>
@@ -128,11 +134,15 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.Property<string>("Rg");
 
+                    b.Property<string>("Senha");
+
                     b.Property<string>("Sobrenome");
+
+                    b.Property<string>("Usuario");
 
                     b.HasKey("IdMedico");
 
-                    b.ToTable("Medico");
+                    b.ToTable("Medicos");
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade.Procedimento", b =>
@@ -152,7 +162,7 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.HasIndex("EspecialidadeIdEspecialidade");
 
-                    b.ToTable("Procedimento");
+                    b.ToTable("Procedimentos");
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Paciente._1.Entidade.Paciente", b =>
@@ -170,13 +180,17 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.Property<string>("Rg");
 
+                    b.Property<string>("Senha");
+
                     b.Property<string>("Sobrenome");
+
+                    b.Property<string>("Usuario");
 
                     b.HasKey("IdPaciente");
 
                     b.HasIndex("ConvenioIdConvenio");
 
-                    b.ToTable("Paciente");
+                    b.ToTable("Pacientes");
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Colaborador._1.Entidade.ColaboradorPermissao", b =>

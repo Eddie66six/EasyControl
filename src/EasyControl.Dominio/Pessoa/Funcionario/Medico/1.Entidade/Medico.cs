@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EasyControl.Dominio.Pessoa.Funcionario._2.Enum;
 
 namespace EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade
 {
@@ -11,7 +12,7 @@ namespace EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade
             ConveniosCredenciados = new List<ConvenioCredenciado>();
         }
 
-        public Medico(string nome, string sobrenome, string rg, string cpf):base(_2.Enum.ETipoFuncionario.Medico, nome,sobrenome,rg,cpf)
+        public Medico(string nome, string sobrenome, string rg, string cpf):base(ETipoFuncionario.Medico, nome,sobrenome,rg,cpf)
         {
             ConveniosCredenciados = new List<ConvenioCredenciado>();
             Especialidades = new List<Especialidade>();

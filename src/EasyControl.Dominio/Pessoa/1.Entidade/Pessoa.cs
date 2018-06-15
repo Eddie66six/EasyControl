@@ -20,9 +20,12 @@
             return Nome + (!string.IsNullOrEmpty(Sobrenome) ? " " + Sobrenome : "");
         }
 
-        public string Nome { get; protected set; }
+        public string Nome { get; set; }
         public string Sobrenome { get; protected set; }
         public string Rg { get; protected set; }
         public string Cpf { get; protected set; }
+        //login
+        public string Usuario { get; protected set; }
+        public string Senha { get; protected set; }
     }
 }

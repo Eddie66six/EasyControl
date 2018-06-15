@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,8 +19,8 @@ namespace EasyControl.Repositorio
         {
             services.AddMvc();
 
-            var connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=EasyControlDb;Integrated Security=true";
-            services.AddDbContext<ConfiguracaoContexto>(options => options.UseSqlServer(connection));
+            //var connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=EasyControlDb;Integrated Security=true";
+            //services.AddDbContext<Contexto>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
-﻿using EasyControl.Dominio.Convenio._1.Entidade;
+﻿using System.IO;
+using EasyControl.Dominio.Convenio._1.Entidade;
 using EasyControl.Dominio.Pessoa.Funcionario.Colaborador._1.Entidade;
 using EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade;
 using EasyControl.Dominio.Pessoa.Funcionario._1.Entidade;
@@ -9,16 +10,36 @@ using EasyControl.Repositorio.Map.Pessoa.Funcionario;
 using EasyControl.Repositorio.Map.Pessoa.Funcionario.Colaborador;
 using EasyControl.Repositorio.Map.Pessoa.Funcionario.Medico;
 using EasyControl.Repositorio.Map.Pessoa.Paciente;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace EasyControl.Repositorio
 {
-    public class ConfiguracaoContexto : DbContext
+    public class GerenciadorContexto
     {
-        public ConfiguracaoContexto(DbContextOptions<ConfiguracaoContexto> options)
-            : base(options)
-        { }
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public GerenciadorContexto(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
 
+        public Contexto GetContext()
+        {
+            if (_httpContextAccessor.HttpContext.Items["ContextManager.Context"] == null)
+            {
+
+                _httpContextAccessor.HttpContext.Items["ContextManager.Context"] = new Contexto();
+            }
+
+            return (Contexto) _httpContextAccessor.HttpContext.Items["ContextManager.Context"];
+        }
+    }
+    public class Contexto : DbContext
+    {
+        public Contexto()
+        {
+            
+        }
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Convenio> Convenios { get; set; }
         public DbSet<Especialidade> Especialidades { get; set; }
@@ -50,6 +71,12 @@ namespace EasyControl.Repositorio
             modelBuilder.ApplyConfiguration(new PermissaoMap());
             modelBuilder.ApplyConfiguration(new PacienteMap());
             modelBuilder.ApplyConfiguration(new ColaboradorMap());
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // define the database to use
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EasyControlDb;Integrated Security=true");
         }
     }
 }

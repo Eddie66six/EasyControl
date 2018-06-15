@@ -8,19 +8,21 @@ namespace EasyControl.Repositorio.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Colaborador",
+                name: "Colaboradores",
                 columns: table => new
                 {
                     Nome = table.Column<string>(maxLength: 50, nullable: true),
                     Sobrenome = table.Column<string>(nullable: true),
                     Rg = table.Column<string>(nullable: true),
                     Cpf = table.Column<string>(nullable: true),
+                    Usuario = table.Column<string>(nullable: true),
+                    Senha = table.Column<string>(nullable: true),
                     IdColaborador = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Colaborador", x => x.IdColaborador);
+                    table.PrimaryKey("PK_Colaboradores", x => x.IdColaborador);
                 });
 
             migrationBuilder.CreateTable(
@@ -37,23 +39,25 @@ namespace EasyControl.Repositorio.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Medico",
+                name: "Medicos",
                 columns: table => new
                 {
                     Nome = table.Column<string>(maxLength: 50, nullable: true),
                     Sobrenome = table.Column<string>(nullable: true),
                     Rg = table.Column<string>(nullable: true),
                     Cpf = table.Column<string>(nullable: true),
+                    Usuario = table.Column<string>(nullable: true),
+                    Senha = table.Column<string>(nullable: true),
                     IdMedico = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Medico", x => x.IdMedico);
+                    table.PrimaryKey("PK_Medicos", x => x.IdMedico);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Permissao",
+                name: "Permissoes",
                 columns: table => new
                 {
                     IdPermissao = table.Column<int>(nullable: false)
@@ -63,26 +67,28 @@ namespace EasyControl.Repositorio.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Permissao", x => x.IdPermissao);
+                    table.PrimaryKey("PK_Permissoes", x => x.IdPermissao);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Paciente",
+                name: "Pacientes",
                 columns: table => new
                 {
                     Nome = table.Column<string>(maxLength: 50, nullable: true),
                     Sobrenome = table.Column<string>(nullable: true),
                     Rg = table.Column<string>(nullable: true),
                     Cpf = table.Column<string>(nullable: true),
+                    Usuario = table.Column<string>(nullable: true),
+                    Senha = table.Column<string>(nullable: true),
                     IdPaciente = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ConvenioIdConvenio = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Paciente", x => x.IdPaciente);
+                    table.PrimaryKey("PK_Pacientes", x => x.IdPaciente);
                     table.ForeignKey(
-                        name: "FK_Paciente_Convenios_ConvenioIdConvenio",
+                        name: "FK_Pacientes_Convenios_ConvenioIdConvenio",
                         column: x => x.ConvenioIdConvenio,
                         principalTable: "Convenios",
                         principalColumn: "IdConvenio",
@@ -90,7 +96,7 @@ namespace EasyControl.Repositorio.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ConvenioCredenciado",
+                name: "ConveniosCredenciados",
                 columns: table => new
                 {
                     IdMedico = table.Column<int>(nullable: false),
@@ -99,23 +105,23 @@ namespace EasyControl.Repositorio.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ConvenioCredenciado", x => new { x.IdMedico, x.IdConveio });
+                    table.PrimaryKey("PK_ConveniosCredenciados", x => new { x.IdMedico, x.IdConveio });
                     table.ForeignKey(
-                        name: "FK_ConvenioCredenciado_Convenios_ConvenioIdConvenio",
+                        name: "FK_ConveniosCredenciados_Convenios_ConvenioIdConvenio",
                         column: x => x.ConvenioIdConvenio,
                         principalTable: "Convenios",
                         principalColumn: "IdConvenio",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ConvenioCredenciado_Medico_IdMedico",
+                        name: "FK_ConveniosCredenciados_Medicos_IdMedico",
                         column: x => x.IdMedico,
-                        principalTable: "Medico",
+                        principalTable: "Medicos",
                         principalColumn: "IdMedico",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Especialidade",
+                name: "Especialidades",
                 columns: table => new
                 {
                     IdEspecialidade = table.Column<int>(nullable: false)
@@ -125,17 +131,17 @@ namespace EasyControl.Repositorio.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Especialidade", x => x.IdEspecialidade);
+                    table.PrimaryKey("PK_Especialidades", x => x.IdEspecialidade);
                     table.ForeignKey(
-                        name: "FK_Especialidade_Medico_IdMedico",
+                        name: "FK_Especialidades_Medicos_IdMedico",
                         column: x => x.IdMedico,
-                        principalTable: "Medico",
+                        principalTable: "Medicos",
                         principalColumn: "IdMedico",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ColaboradorPermissao",
+                name: "ColaboradorPermissoes",
                 columns: table => new
                 {
                     IdColaborador = table.Column<int>(nullable: false),
@@ -143,23 +149,23 @@ namespace EasyControl.Repositorio.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ColaboradorPermissao", x => new { x.IdColaborador, x.IdPermissao });
+                    table.PrimaryKey("PK_ColaboradorPermissoes", x => new { x.IdColaborador, x.IdPermissao });
                     table.ForeignKey(
-                        name: "FK_ColaboradorPermissao_Colaborador_IdColaborador",
+                        name: "FK_ColaboradorPermissoes_Colaboradores_IdColaborador",
                         column: x => x.IdColaborador,
-                        principalTable: "Colaborador",
+                        principalTable: "Colaboradores",
                         principalColumn: "IdColaborador",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ColaboradorPermissao_Permissao_IdPermissao",
+                        name: "FK_ColaboradorPermissoes_Permissoes_IdPermissao",
                         column: x => x.IdPermissao,
-                        principalTable: "Permissao",
+                        principalTable: "Permissoes",
                         principalColumn: "IdPermissao",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Procedimento",
+                name: "Procedimentos",
                 columns: table => new
                 {
                     IdProcedimento = table.Column<int>(nullable: false),
@@ -170,69 +176,69 @@ namespace EasyControl.Repositorio.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Procedimento", x => x.IdEspecialidade);
+                    table.PrimaryKey("PK_Procedimentos", x => x.IdEspecialidade);
                     table.ForeignKey(
-                        name: "FK_Procedimento_Especialidade_EspecialidadeIdEspecialidade",
+                        name: "FK_Procedimentos_Especialidades_EspecialidadeIdEspecialidade",
                         column: x => x.EspecialidadeIdEspecialidade,
-                        principalTable: "Especialidade",
+                        principalTable: "Especialidades",
                         principalColumn: "IdEspecialidade",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ColaboradorPermissao_IdPermissao",
-                table: "ColaboradorPermissao",
+                name: "IX_ColaboradorPermissoes_IdPermissao",
+                table: "ColaboradorPermissoes",
                 column: "IdPermissao");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ConvenioCredenciado_ConvenioIdConvenio",
-                table: "ConvenioCredenciado",
+                name: "IX_ConveniosCredenciados_ConvenioIdConvenio",
+                table: "ConveniosCredenciados",
                 column: "ConvenioIdConvenio");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Especialidade_IdMedico",
-                table: "Especialidade",
+                name: "IX_Especialidades_IdMedico",
+                table: "Especialidades",
                 column: "IdMedico");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Paciente_ConvenioIdConvenio",
-                table: "Paciente",
+                name: "IX_Pacientes_ConvenioIdConvenio",
+                table: "Pacientes",
                 column: "ConvenioIdConvenio");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Procedimento_EspecialidadeIdEspecialidade",
-                table: "Procedimento",
+                name: "IX_Procedimentos_EspecialidadeIdEspecialidade",
+                table: "Procedimentos",
                 column: "EspecialidadeIdEspecialidade");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ColaboradorPermissao");
+                name: "ColaboradorPermissoes");
 
             migrationBuilder.DropTable(
-                name: "ConvenioCredenciado");
+                name: "ConveniosCredenciados");
 
             migrationBuilder.DropTable(
-                name: "Paciente");
+                name: "Pacientes");
 
             migrationBuilder.DropTable(
-                name: "Procedimento");
+                name: "Procedimentos");
 
             migrationBuilder.DropTable(
-                name: "Colaborador");
+                name: "Colaboradores");
 
             migrationBuilder.DropTable(
-                name: "Permissao");
+                name: "Permissoes");
 
             migrationBuilder.DropTable(
                 name: "Convenios");
 
             migrationBuilder.DropTable(
-                name: "Especialidade");
+                name: "Especialidades");
 
             migrationBuilder.DropTable(
-                name: "Medico");
+                name: "Medicos");
         }
     }
 }

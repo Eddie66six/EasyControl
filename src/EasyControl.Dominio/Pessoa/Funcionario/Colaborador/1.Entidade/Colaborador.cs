@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EasyControl.Dominio.Pessoa.Funcionario._2.Enum;
 
 namespace EasyControl.Dominio.Pessoa.Funcionario.Colaborador._1.Entidade
 {
@@ -10,7 +11,7 @@ namespace EasyControl.Dominio.Pessoa.Funcionario.Colaborador._1.Entidade
             Permissoes = new List<ColaboradorPermissao>();
         }
 
-        public Colaborador(string nome, string sobrenome, string rg, string cpf) : base(_2.Enum.ETipoFuncionario.Colaborador, nome, sobrenome, rg, cpf)
+        public Colaborador(string nome, string sobrenome, string rg, string cpf) : base(ETipoFuncionario.Colaborador, nome, sobrenome, rg, cpf)
         {
             Permissoes = new List<ColaboradorPermissao>();
         }
