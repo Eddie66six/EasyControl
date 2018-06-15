@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 using EasyControl.Dominio;
-using EasyControl.Dominio.Pessoa.Funcionario.Colaborador._2.Repositorio;
+using EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Repositorio;
 using EasyControl.Servico.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

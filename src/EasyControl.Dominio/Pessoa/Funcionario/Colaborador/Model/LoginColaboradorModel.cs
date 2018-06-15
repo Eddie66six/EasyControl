@@ -1,4 +1,4 @@
-﻿namespace EasyControl.Dominio.Pessoa.Funcionario.Colaborador._3.Model
+﻿namespace EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Model
 {
     public class LoginColaboradorModel
     {

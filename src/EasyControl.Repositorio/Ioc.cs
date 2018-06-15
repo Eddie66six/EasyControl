@@ -1,5 +1,5 @@
 ﻿using EasyControl.Dominio;
-using EasyControl.Dominio.Pessoa.Funcionario.Colaborador._2.Repositorio;
+using EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Repositorio;
 using EasyControl.Repositorio.Repositorio;
 using EasyControl.Repositorio.Repositorio.Pessoa.Funcionario.Colaborador;
 using Microsoft.AspNetCore.Http;

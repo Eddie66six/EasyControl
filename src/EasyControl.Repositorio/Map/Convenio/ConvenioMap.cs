@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EasyControl.Repositorio.Map.Convenio
 {
-    public class ConvenioMap : IEntityTypeConfiguration<Dominio.Convenio._1.Entidade.Convenio>
+    public class ConvenioMap : IEntityTypeConfiguration<Dominio.Convenio.Entidade.Convenio>
     {
-        public void Configure(EntityTypeBuilder<Dominio.Convenio._1.Entidade.Convenio> builder)
+        public void Configure(EntityTypeBuilder<Dominio.Convenio.Entidade.Convenio> builder)
         {
             // Override nvarchar(max) with nvarchar(15)
             builder.HasKey(u => u.IdConvenio);

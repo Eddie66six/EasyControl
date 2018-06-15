@@ -1,4 +1,4 @@
-﻿namespace EasyControl.Dominio.Pessoa.Funcionario._2.Enum
+﻿namespace EasyControl.Dominio.Pessoa.Funcionario.Enum
 {
     public enum ETipoFuncionario
     {

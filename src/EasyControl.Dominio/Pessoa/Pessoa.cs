@@ -1,4 +1,4 @@
-﻿namespace EasyControl.Dominio.Pessoa._1.Entidade
+﻿namespace EasyControl.Dominio.Pessoa
 {
     public class Pessoa
     {
@@ -20,7 +20,7 @@
             return Nome + (!string.IsNullOrEmpty(Sobrenome) ? " " + Sobrenome : "");
         }
 
-        public string Nome { get; set; }
+        public string Nome { get; protected set; }
         public string Sobrenome { get; protected set; }
         public string Rg { get; protected set; }
         public string Cpf { get; protected set; }

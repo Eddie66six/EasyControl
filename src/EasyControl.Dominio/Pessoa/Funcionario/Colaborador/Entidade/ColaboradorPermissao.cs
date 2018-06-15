@@ -1,6 +1,6 @@
-﻿using EasyControl.Dominio.Pessoa.Funcionario._1.Entidade;
+﻿using EasyControl.Dominio.Pessoa.Funcionario.Entidade;
 
-namespace EasyControl.Dominio.Pessoa.Funcionario.Colaborador._1.Entidade
+namespace EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Entidade
 {
     public class ColaboradorPermissao
     {

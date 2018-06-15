@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyControl.Repositorio.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20180615020749_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20180615143706_AddProductReviews")]
+    partial class AddProductReviews
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,12 +27,91 @@ namespace EasyControl.Repositorio.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("EmpresaIdEmpresa");
+
+                    b.Property<int>("IdFilial");
+
                     b.Property<string>("Nome")
                         .HasMaxLength(50);
 
                     b.HasKey("IdConvenio");
 
+                    b.HasIndex("EmpresaIdEmpresa");
+
                     b.ToTable("Convenios");
+                });
+
+            modelBuilder.Entity("EasyControl.Dominio.Empresa.Entidade.Empresa", b =>
+                {
+                    b.Property<int>("IdEmpresa")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nome")
+                        .HasMaxLength(50);
+
+                    b.HasKey("IdEmpresa");
+
+                    b.ToTable("Empresas");
+                });
+
+            modelBuilder.Entity("EasyControl.Dominio.Empresa.Entidade.Filial", b =>
+                {
+                    b.Property<int>("IdFilial")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdEmpresa");
+
+                    b.Property<string>("Nome")
+                        .HasMaxLength(50);
+
+                    b.HasKey("IdFilial");
+
+                    b.HasIndex("IdEmpresa");
+
+                    b.ToTable("Filiais");
+                });
+
+            modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Entidade.Colaborador", b =>
+                {
+                    b.Property<int>("IdColaborador")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Cpf");
+
+                    b.Property<int>("IdFilial");
+
+                    b.Property<string>("Nome")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Rg");
+
+                    b.Property<string>("Senha");
+
+                    b.Property<string>("Sobrenome");
+
+                    b.Property<string>("Usuario");
+
+                    b.HasKey("IdColaborador");
+
+                    b.HasIndex("IdFilial");
+
+                    b.ToTable("Colaboradores");
+                });
+
+            modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Entidade.ColaboradorPermissao", b =>
+                {
+                    b.Property<int>("IdColaborador");
+
+                    b.Property<int>("IdPermissao");
+
+                    b.HasKey("IdColaborador", "IdPermissao");
+
+                    b.HasIndex("IdPermissao");
+
+                    b.ToTable("ColaboradorPermissoes");
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Entidade.Permissao", b =>
@@ -49,43 +128,6 @@ namespace EasyControl.Repositorio.Migrations
                     b.HasKey("IdPermissao");
 
                     b.ToTable("Permissoes");
-                });
-
-            modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Entidade.Colaborador", b =>
-                {
-                    b.Property<int>("IdColaborador")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Cpf");
-
-                    b.Property<string>("Nome")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Rg");
-
-                    b.Property<string>("Senha");
-
-                    b.Property<string>("Sobrenome");
-
-                    b.Property<string>("Usuario");
-
-                    b.HasKey("IdColaborador");
-
-                    b.ToTable("Colaboradores");
-                });
-
-            modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Entidade.ColaboradorPermissao", b =>
-                {
-                    b.Property<int>("IdColaborador");
-
-                    b.Property<int>("IdPermissao");
-
-                    b.HasKey("IdColaborador", "IdPermissao");
-
-                    b.HasIndex("IdPermissao");
-
-                    b.ToTable("ColaboradorPermissoes");
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Medico.Entidade.ConvenioCredenciado", b =>
@@ -129,6 +171,8 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.Property<string>("Cpf");
 
+                    b.Property<int>("IdFilial");
+
                     b.Property<string>("Nome")
                         .HasMaxLength(50);
 
@@ -141,6 +185,8 @@ namespace EasyControl.Repositorio.Migrations
                     b.Property<string>("Usuario");
 
                     b.HasKey("IdMedico");
+
+                    b.HasIndex("IdFilial");
 
                     b.ToTable("Medicos");
                 });
@@ -175,6 +221,8 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.Property<string>("Cpf");
 
+                    b.Property<int>("IdEmpresa");
+
                     b.Property<string>("Nome")
                         .HasMaxLength(50);
 
@@ -190,7 +238,32 @@ namespace EasyControl.Repositorio.Migrations
 
                     b.HasIndex("ConvenioIdConvenio");
 
+                    b.HasIndex("IdEmpresa");
+
                     b.ToTable("Pacientes");
+                });
+
+            modelBuilder.Entity("EasyControl.Dominio.Convenio.Entidade.Convenio", b =>
+                {
+                    b.HasOne("EasyControl.Dominio.Empresa.Entidade.Empresa", "Empresa")
+                        .WithMany("Convenios")
+                        .HasForeignKey("EmpresaIdEmpresa");
+                });
+
+            modelBuilder.Entity("EasyControl.Dominio.Empresa.Entidade.Filial", b =>
+                {
+                    b.HasOne("EasyControl.Dominio.Empresa.Entidade.Empresa", "Empresa")
+                        .WithMany("Filiais")
+                        .HasForeignKey("IdEmpresa")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Entidade.Colaborador", b =>
+                {
+                    b.HasOne("EasyControl.Dominio.Empresa.Entidade.Filial", "Filial")
+                        .WithMany("Colaboradores")
+                        .HasForeignKey("IdFilial")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Entidade.ColaboradorPermissao", b =>
@@ -226,6 +299,14 @@ namespace EasyControl.Repositorio.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Medico.Entidade.Medico", b =>
+                {
+                    b.HasOne("EasyControl.Dominio.Empresa.Entidade.Filial", "Filial")
+                        .WithMany("Medicos")
+                        .HasForeignKey("IdFilial")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("EasyControl.Dominio.Pessoa.Funcionario.Medico.Entidade.Procedimento", b =>
                 {
                     b.HasOne("EasyControl.Dominio.Pessoa.Funcionario.Medico.Entidade.Especialidade", "Especialidade")
@@ -238,6 +319,11 @@ namespace EasyControl.Repositorio.Migrations
                     b.HasOne("EasyControl.Dominio.Convenio.Entidade.Convenio", "Convenio")
                         .WithMany("Pacientes")
                         .HasForeignKey("ConvenioIdConvenio");
+
+                    b.HasOne("EasyControl.Dominio.Empresa.Entidade.Empresa", "Empresa")
+                        .WithMany("Pacientes")
+                        .HasForeignKey("IdEmpresa")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

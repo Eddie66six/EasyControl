@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using EasyControl.Dominio.Pessoa.Funcionario.Colaborador._2.Repositorio;
-using EasyControl.Dominio.Pessoa.Funcionario.Colaborador._3.Model;
+using EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Repositorio;
+using EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Model;
 
 namespace EasyControl.Repositorio.Repositorio.Pessoa.Funcionario.Colaborador
 {
-    public class ColaboradorRepositorio : BaseRepositorio<Dominio.Pessoa.Funcionario.Colaborador._1.Entidade.Colaborador>, IColaboradorRepositorio
+    public class ColaboradorRepositorio : BaseRepositorio<Dominio.Pessoa.Funcionario.Colaborador.Entidade.Colaborador>, IColaboradorRepositorio
     {
         public ColaboradorRepositorio(GerenciadorContexto context) : base(context)
         {

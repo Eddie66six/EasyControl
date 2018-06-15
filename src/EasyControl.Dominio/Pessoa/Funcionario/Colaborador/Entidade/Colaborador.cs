@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using EasyControl.Dominio.Empresa.Entidade;
+using System.Collections.Generic;
 using System.Linq;
-using EasyControl.Dominio.Pessoa.Funcionario._2.Enum;
 
-namespace EasyControl.Dominio.Pessoa.Funcionario.Colaborador._1.Entidade
+namespace EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Entidade
 {
-    public class Colaborador : Funcionario._1.Entidade.Funcionario
+    public class Colaborador : Funcionario.Entidade.Funcionario
     {
         protected Colaborador()
         {
             Permissoes = new List<ColaboradorPermissao>();
         }
 
-        public Colaborador(string nome, string sobrenome, string rg, string cpf) : base(ETipoFuncionario.Colaborador, nome, sobrenome, rg, cpf)
+        public Colaborador(string nome, string sobrenome, string rg, string cpf) : base(nome, sobrenome, rg, cpf)
         {
             Permissoes = new List<ColaboradorPermissao>();
         }
@@ -24,5 +24,7 @@ namespace EasyControl.Dominio.Pessoa.Funcionario.Colaborador._1.Entidade
 
         public int IdColaborador { get; set; }
         public IEnumerable<ColaboradorPermissao> Permissoes { get; protected set; }
+        public int IdFilial { get; set; }
+        public Filial Filial { get; set; }
     }
 }

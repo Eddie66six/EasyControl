@@ -1,4 +1,4 @@
-﻿namespace EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade
+﻿namespace EasyControl.Dominio.Pessoa.Funcionario.Medico.Entidade
 {
     public class Procedimento
     {

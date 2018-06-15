@@ -1,4 +1,4 @@
-﻿using EasyControl.Dominio.Pessoa.Funcionario.Medico._1.Entidade;
+﻿using EasyControl.Dominio.Pessoa.Funcionario.Medico.Entidade;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
