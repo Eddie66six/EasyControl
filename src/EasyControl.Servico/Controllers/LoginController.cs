@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 using EasyControl.Dominio;
+using EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Model;
 using EasyControl.Dominio.Pessoa.Funcionario.Colaborador.Repositorio;
 using EasyControl.Servico.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -24,27 +25,24 @@ namespace EasyControl.Servico.Controllers
         [AllowAnonymous]
         [HttpPost]
         public object Post(
-            [FromBody]User usuario,
+            [FromBody]LoginModel usuario,
             [FromServices]UsersDAO usersDAO,
             [FromServices]SigningConfigurations signingConfigurations,
             [FromServices]TokenConfigurations tokenConfigurations)
         {
-            bool credenciaisValidas = false;
-            if (usuario != null && !String.IsNullOrWhiteSpace(usuario.UserID))
+            LoginColaboradorModel usuarioDb = null;
+            if (!string.IsNullOrWhiteSpace(usuario.Usuario) && !string.IsNullOrEmpty(usuario.Senha))
             {
-                var usuarioBase = usersDAO.Find(usuario.UserID);
-                credenciaisValidas = (usuarioBase != null &&
-                    usuario.UserID == usuarioBase.UserID &&
-                    usuario.AccessKey == usuarioBase.AccessKey);
+                usuarioDb = _colaboradorRepositorio.Logar(usuario.Usuario, usuario.Senha);
             }
 
-            if (credenciaisValidas)
+            if (usuarioDb != null)
             {
                 ClaimsIdentity identity = new ClaimsIdentity(
-                    new GenericIdentity(usuario.UserID, "Login"),
+                    new GenericIdentity(usuarioDb.IdColaborador.ToString(), "Login"),
                     new[] {
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
-                        new Claim(JwtRegisteredClaimNames.UniqueName, usuario.UserID)
+                        new Claim(JwtRegisteredClaimNames.UniqueName, usuarioDb.IdColaborador.ToString())
                     }
                 );
 

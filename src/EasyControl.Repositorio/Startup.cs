@@ -18,9 +18,6 @@ namespace EasyControl.Repositorio
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            //var connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=EasyControlDb;Integrated Security=true";
-            //services.AddDbContext<Contexto>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

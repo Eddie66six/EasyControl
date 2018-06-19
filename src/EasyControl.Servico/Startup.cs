@@ -28,7 +28,7 @@ namespace EasyControl.Servico
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Ioc.RegisterServicesIoc(services);
+            Ioc.RegisterServicesIoc(services, Configuration);
             services.AddTransient<UsersDAO>();
 
             var signingConfigurations = new SigningConfigurations();
