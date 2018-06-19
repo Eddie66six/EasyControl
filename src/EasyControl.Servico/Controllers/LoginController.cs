@@ -26,7 +26,6 @@ namespace EasyControl.Servico.Controllers
         [HttpPost]
         public object Post(
             [FromBody]LoginModel usuario,
-            [FromServices]UsersDAO usersDAO,
             [FromServices]SigningConfigurations signingConfigurations,
             [FromServices]TokenConfigurations tokenConfigurations)
         {
@@ -46,7 +45,7 @@ namespace EasyControl.Servico.Controllers
                     }
                 );
 
-                DateTime dataCriacao = DateTime.Now;
+                DateTime dataCriacao = DateTime.UtcNow;
                 DateTime dataExpiracao = dataCriacao +
                     TimeSpan.FromSeconds(tokenConfigurations.Seconds);
 

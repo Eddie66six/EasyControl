@@ -8,10 +8,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace EasyControl.Servico
@@ -29,7 +27,6 @@ namespace EasyControl.Servico
         public void ConfigureServices(IServiceCollection services)
         {
             Ioc.RegisterServicesIoc(services, Configuration);
-            services.AddTransient<UsersDAO>();
 
             var signingConfigurations = new SigningConfigurations();
             services.AddSingleton(signingConfigurations);

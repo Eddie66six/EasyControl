@@ -9,11 +9,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace EasyControl.Servico.Models
 {
-    public class User
-    {
-        public string UserID { get; set; }
-        public string AccessKey { get; set; }
-    }
 
     public class TokenConfigurations
     {
@@ -36,29 +31,6 @@ namespace EasyControl.Servico.Models
 
             SigningCredentials = new SigningCredentials(
                 Key, SecurityAlgorithms.RsaSha256Signature);
-        }
-    }
-
-    public class UsersDAO
-    {
-        private IConfiguration _configuration;
-
-        public UsersDAO(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
-        public User Find(string userID)
-        {
-            return new User();
-            //using (SqlConnection conexao = new SqlConnection(
-            //    _configuration.GetConnectionString("ExemploJWT")))
-            //{
-            //    return conexao.QueryFirstOrDefault<User>(
-            //        "SELECT UserID, AccessKey " +
-            //        "FROM dbo.Users " +
-            //        "WHERE UserID = @UserID", new { UserID = userID });
-            //}
         }
     }
 }
