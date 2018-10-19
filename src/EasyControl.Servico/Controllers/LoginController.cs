@@ -24,6 +24,7 @@ namespace EasyControl.Servico.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
+        [Route("colaborador")]
         public object Post(
             [FromBody]LoginModel usuario,
             [FromServices]SigningConfigurations signingConfigurations,
